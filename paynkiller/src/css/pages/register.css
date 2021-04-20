@@ -1,0 +1,26 @@
+#back-menu-button {
+    background-color: #04BF8A;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#icon-menu-button {
+    background-color: #04BF8A;
+    color: white;
+    font-weight: bold;
+}
+
+#containerRegister {
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+}
+
+#button-register {
+    background-color: #2d5a7e;
+    color: white;
+    padding: 10px;
+    width: 50%;
+    font-weight: bold;
+    font-size: 20px;
+}

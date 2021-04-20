@@ -1,0 +1,16 @@
+const router = require('express').Router()
+const { Router } = require('express')
+const {reportController} = require('../controllers')
+
+router.get('/displaylaporankeuanganall', reportController.getLaporanKeuanganAll)
+router.post('/displaylaporankeuanganbydate', reportController.getLaporanKeuanganByDate)
+router.get('/displayjualprodukall', reportController.getJumlahProdukJualAll)
+router.post('/displayjualprodukbydate', reportController.getJumlahProdukJualByDate)
+router.get('/displayjualbahanbakuall', reportController.getJumlahBahanBakuJualAll)
+router.post('/displayjualbahanbakubydate', reportController.getJumlahBahanBakuJualByDate)
+router.get('/displayprofit', reportController.getTotalProfit)
+router.get('/displaybestproduct', reportController.getProductBestSeller)
+router.get('/displaybestbahanbaku', reportController.getRacikanBestSeller)
+router.get('/displaynamebestproduct', reportController.getnamaProdukBestSeller)
+router.get('/displaynamebestbahanbaku', reportController.getnamaBahanBakuBestSeller)
+module.exports = router

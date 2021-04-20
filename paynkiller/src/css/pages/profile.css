@@ -1,0 +1,23 @@
+#containerProfile {
+    display: flex;
+    flex-direction: row;
+    background-color: teal;
+    justify-content: center;
+}
+#cardKiri {
+    height: 100vh;
+    background-color: tomato;
+}
+#profileBar {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid gray;
+    border-radius: 20px;
+    width: 700px;
+    height: 150px;
+}
+#Button {
+    font-weight: bold;
+    margin-top: 10px;
+}

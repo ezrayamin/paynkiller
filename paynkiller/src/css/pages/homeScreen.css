@@ -1,0 +1,58 @@
+#ContainerHome {
+    font-family: 'Roboto', sans-serif;
+}
+
+.TitleHeader {
+    font-family: 'Merriweather', serif;
+    color: #63686e;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.TitleHeader2{
+    font-family: 'Merriweather', serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.TitleHeader3{
+    font-family: 'Merriweather', serif;
+    font-size: 50px;
+    font-weight: bold;
+    color:#63686e;
+    text-align: center;
+}
+
+.BoxTestimoni {
+    padding: 5%;
+    margin: 0 8%;
+    background-color: #038c73;
+}
+
+.TextTestimoni {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    font-weight: medium;
+}
+
+.DescriptionText {
+    color: #63686e;
+    font-size: 20px;
+    font-weight: medium;
+    text-align: justify;
+}
+
+.TestimoniName{
+    text-align: center;
+    font-size: 15px;
+    color: white;
+    
+}
+
+.wavesStyle {
+    position: absolute;
+    bottom: 0;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        img {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #04BF8A;
+        }
+        h1{
+            color: #04BF8A;
+        }
+        table, th, td {
+         border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>
+            <h1>PaynKiller</h1>
+            <img src="cid:paynkiller" width="300" height="300" alt="logo brand">
+        </span>
+        <h2>Hello {{nama}} !</h2>
+        <hr>
+        <h3>Thank you for Trusting Us</h3>
+        <h3>And Thanks For The Confirmation</h3>
+        <hr>
+        <div>
+            <table style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Order Number</th>
+                        <th>Transaction Date</th>
+                        <th>Pay Date</th>
+                        <th>Payment</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{nama}}</td>
+                        <td>{{nomor_order}}</td>
+                        <td>{{tanggal_transaksi}}</td>
+                        <td>{{tanggal_bayar}}</td>
+                        <td>{{jenis_pembayaran}}</td>
+                        <td>{{data_status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

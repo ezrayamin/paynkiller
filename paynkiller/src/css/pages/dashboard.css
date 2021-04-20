@@ -1,0 +1,22 @@
+.Panel-Layout {
+    background-image: linear-gradient(to right top, #11998e, #00af94, #00c593, #00da8b, #38ef7d);
+    padding: 20px
+}
+
+.Icon-Dashboard{
+    color: white;
+    text-align: center;
+    transform: rotate(10deg);
+}
+
+.title1{
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+}
+
+.title2{
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+}

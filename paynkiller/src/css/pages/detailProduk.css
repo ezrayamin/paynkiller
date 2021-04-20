@@ -1,0 +1,49 @@
+#judulDetailProduk {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 28.6px;
+    text-decoration: none solid rgb(83, 86, 90);
+}
+#hargaDetailProduk {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 28.6px;
+    text-decoration: none solid rgb(83, 86, 90);
+    margin-top: 10px;
+}
+#container1 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+#container2 {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    height: 550px;
+}
+#container2_1 {
+    height: 318px;
+    margin-right: 20px;
+}
+#Box {
+    border-radius: 5px;
+    box-shadow: 5px 10px 8px #b2bec3;
+}
+
+#minititle {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#minitext {
+    font-size: 15px;
+}
+
+#container2_2 {
+    width: 647.6px;
+}
+
+#container2_3 {
+    width: 350px;
+    
+}
