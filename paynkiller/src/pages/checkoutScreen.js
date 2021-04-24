@@ -6,9 +6,13 @@ import {
     Button, Panel, Modal, Grid, Row, Col,
     Alert, InputPicker, FormGroup, ControlLabel, Input
 } from 'rsuite'
-import { getOrdersInCheckout, showProfile, editProfile, getMaterialsCheckout, uploadPaymentProof,
-        decreaseProductStock, decreaseStockMaterial
+import {
+    getOrdersInCheckout, showProfile, editProfile, getMaterialsCheckout, uploadPaymentProof,
+    decreaseProductStock, decreaseStockMaterial
 } from '../action'
+
+import '../css/pages/cart-checkout.css'
+import '../css/components/fonts.css'
 
 const URL_IMG = 'http://localhost:2000/'
 
@@ -49,7 +53,7 @@ const CheckoutScreen = () => {
         dispatch(getMaterialsCheckout(id_customer))
         console.log(checkoutOrders)
         console.log(materialsCheckout)
-      
+
         Axios.get(`http://localhost:2000/order/paymentMethods`)
             .then(res => setPayments(res.data))
     }, [id_customer])
@@ -149,7 +153,7 @@ const CheckoutScreen = () => {
         return n
 
     }
-    
+
     const handleChange = (e) => {
         console.log(e.target.files)
         setModalSelectedPay({
@@ -164,9 +168,9 @@ const CheckoutScreen = () => {
         console.log('sebelom append', modalSelectedPay.bukti_bayar)
         data.append('IMG', modalSelectedPay.bukti_bayar)
         console.log('data, setelah append', data)
-      
+
         const body = {
-            order_number: checkoutOrders.length !==0 ? checkoutOrders[0].order_number : materialsCheckout[0].order_number,
+            order_number: checkoutOrders.length !== 0 ? checkoutOrders[0].order_number : materialsCheckout[0].order_number,
             jenis_pembayaran: modalSelectedPay.jenis_pembayaran,
             email: biodata.email
         }
@@ -185,22 +189,16 @@ const CheckoutScreen = () => {
         return (
             checkoutOrders.map((item, index) => {
                 return (
-                    <div key={index} style={{ backgroundColor: 'white', height: '160px', width: '400px', border: '1px solid gray', margin: '10px 0 0 10px', display: 'flex', flexDirection: 'row', borderRadius: '20px' }}>
-                        <div style={{ flexGrow: 3, width: '40vw', padding: '40px 0 0 30px', display: 'flex', flexDirection: 'row' }}>
-                            <img src={URL_IMG + item.gambar_obat} style={{ height: '80px', width: '100px' }} />
+                    <div key={index} className='container-products'>
+                        <div className='product-details'>
+                            <img src={URL_IMG + item.gambar_obat} id="product-image" />
                             <div style={{ width: 200 }}>
-                                <h1 style={{ fontSize: '15px', fontWeight: 600, margin: '-15px 0 0 20px', lineHeight: '2' }}>{item.nama_produk}</h1>
-                                <p style={{ marginLeft: 20 }}>{item.qty}</p>
-                                <h1 style={{ fontSize: '15px', fontWeight: 600, margin: '15px 0 0 20px' }}>Rp {item.harga_produk.toLocaleString()}</h1>
+                                <h1 id="product-name" className="text">{item.nama_produk} ({item.qty})</h1>
+                                {/* <p style={{ margin: '0 0 -30px 20px'}}>{item.qty}</p> */}
+                                <h1 id="product-price" className="text">Rp {item.harga_produk.toLocaleString()}</h1>
                             </div>
                         </div>
-                        <div style={{ flexGrow: 3, width: '30vw', display: 'flex', flexDirection: 'column' }}>
-                            <div style={{ flexGrow: 10 }}>
-
-                            </div>
-                            <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-                                {/*  */}
-                            </div>
+                        <div className="edit-products">
                         </div>
                     </div>
                 )
@@ -209,21 +207,28 @@ const CheckoutScreen = () => {
     }
 
     const CekBiodata = () => {
-        if (!biodata.firstname || !biodata.lastname || !biodata.alamat || !biodata.phone) return (
-            <div>
-                <h6 style={{ color: 'red', fontSize:'14px' }}>please fill up your data</h6>
-            </div>
-        )
-        return (
-            <div></div>
-        )
+        if (!biodata.firstname || !biodata.lastname || !biodata.alamat || !biodata.phone) {
+            return (
+                <div>
+                    <h6 className="alert">please fill up your data</h6>
+                    <Button onClick={openBiodataModal} appearance="ghost" style={{ color: '#51bea5', borderColor: '#d3d3d3' }}>Change Address</Button>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <Button onClick={openBiodataModal} appearance="ghost" style={{ color: '#51bea5', borderColor: '#d3d3d3' }}>Change Address</Button>
+                </div>
+            )
+
+        }
     }
 
     const RenderPayments = () => {
         return (
             payments.map((item, index) => {
                 return (
-                    <div key={index} style={{ border: '1px solid gray' }}>
+                    <div key={index} className="button-selection">
                         <Button onClick={() => openModalFinal(item.jenis_pembayaran, item.nomor_rekening)} block style={{ fontSize: '14px' }}>{item.jenis_pembayaran}</Button>
                     </div>
                 )
@@ -235,9 +240,9 @@ const CheckoutScreen = () => {
         return (
             materialsCheckout.map((item, index) => {
                 return (
-                    <div key={index} style={{ backgroundColor: 'white', height: '80px', width: '200px', border: '1px solid gray', margin: '10px 10px 10px', display: 'flex', borderRadius: '20px', padding: '10px 20px 10px 20px' }}>
+                    <div key={index} className="box-material">
                         <p>{item.nama_bahan_baku}</p>
-                        <p style={{ marginTop: '20px' }}>{item.total_beli_satuan + item.nama_uom}</p>
+                        <p id="dose">{item.total_beli_satuan + item.nama_uom}</p>
                     </div>
                 )
             })
@@ -246,48 +251,44 @@ const CheckoutScreen = () => {
 
     return (
         <div>
-            <h1 style={{ margin: '17px 40px', fontSize: '34px' }}>Checkout</h1>
-            <div style={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
-                <div style={{ borderTop: '4px solid #51bea5', flexGrow: 2, padding: '30px 0 0 40px', maxWidth: '65vw', flexDirection: 'column' }}>
-                    <div>
-                        <h1 style={{ fontSize: '30px' }}>Shipping Address</h1>
-                        <h4>full name: {biodata.firstname + ' ' + biodata.lastname}</h4>
-                        <h4>address: {biodata.alamat}</h4>
-                        <h4>phone: {biodata.phone} </h4>
-                        <CekBiodata />
-                        <Button onClick={openBiodataModal} appearance="ghost" style={{ color: 'gray', borderColor: '#d3d3d3' }}>Change Address</Button>
-                    </div>
-                    <div style={{ marginTop: 15, borderTop: '4px solid #d3d3d3' }}>
-                        <p style={{ fontSize: '18px' }}>Products</p>
+            <h1 className="heading" id="yours-heading">Checkout</h1>
+            <div className="main-container">
+                <div className="maincontainer-products">
+                    <h1 className="sub-heading">Shipping Address</h1>
+                    <h4 className="text">full name: {biodata.firstname ? biodata.firstname + ' ' + biodata.lastname : ''}</h4>
+                    <h4 className="text" id="margin-address">address: {biodata.alamat}</h4>
+                    <h4 className="text" id="margin-phone">phone: {biodata.phone} </h4>
+                    <CekBiodata />
+                    <div id="border-biodata">
+                        <p className="sub-heading" id="subhead-products">Products</p>
                         <Render />
-                        <p style={{ fontSize: '18px', marginTop: '25px' }}>Active Ingredients</p>
-                        <div style={{ display: 'flex' }}>
+                        <p className="sub-heading" id="subhead-ingredients">Active Ingredients</p>
+                        <div className="container-materials">
                             <ShowMaterials />
                         </div>
                     </div>
                 </div>
-                <div style={{ flexGrow: 1, position: 'relative' }}>
-                    <Panel shaded={true} style={{ backgroundColor: 'white', height: '350px', width: '280px', position: 'fixed', margin: '50px 0 0 40px', border: '3px solid #d3d3d3', borderRadius: '20px', padding: '20px 10px 20px 10px' }}>
-                        <p style={{ fontSize: '18px', fontWeight: 'bold' }}>Shopping</p>
-                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <p style={{ fontSize: '16px', marginTop: '30px' }}>Total Price ({totalQty()} items)</p>
-                            <p style={{ fontSize: '18px', textAlign: 'end', marginTop: '28px' }}>Rp {grandTotal().toLocaleString('id-ID')}</p>
+                <div className="container-price">
+                    <Panel shaded={true} className="panel-price">
+                        <p className="sub-heading">Shopping</p>
+                        <div className="container-priceeach">
+                            <p className="text" id="prod">Total Price ({totalQty()} items)</p>
+                            <p className="text" id="prodprice">Rp {grandTotal().toLocaleString('id-ID')}</p>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '10px' }}>
-                            <p style={{ fontSize: '16px', marginTop: '10px' }}>Active Ingredients</p>
-                            <p style={{ fontSize: '16px', textAlign: 'center' }}>Rp {totalPriceIngredients().toLocaleString('id-ID')}</p>
+                        <div className="container-priceeach">
+                            <p className="text" id="ingre">Active Ingredients</p>
+                            <p className="text" id="ingreprice">Rp {totalPriceIngredients().toLocaleString('id-ID')}</p>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginTop: '10px' }}>
-                            <p style={{ fontSize: '16px', marginTop: '10px' }}>Shipping</p>
-                            <p style={{ fontSize: '16px', textAlign: 'center', color: '#51bea5', fontWeight: 'bold' }}>ALWAYS FREE</p>
+                        <div className="container-priceeach">
+                            <p className="text" id="shipping">Shipping</p>
+                            <p className="text" id="free">ALWAYS FREE</p>
                         </div>
-                        <div style={{ borderBottom: '4px solid gray', marginTop: '20px' }}></div>
-                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '18px', }}>
-                            <p style={{ marginTop: '10px' }}>Grand Total</p>
-                            <p style={{ fontSize: '18px', textAlign: 'center' }}>Rp {(grandTotal() + totalPriceIngredients()).toLocaleString('id-ID')}</p>
-                            {/* <p style={{ textAlign: 'center' }}>Rp {checkoutOrders['showGrandTotal'].toLocaleString('id-ID')}</p> */}
+                        <div id="border-inprice"></div>
+                        <div className="container-priceeach">
+                            <p className="text" id="grand">Grand Total</p>
+                            <p className="text" id="grandnominal">Rp {(grandTotal() + totalPriceIngredients()).toLocaleString('id-ID')}</p>
                         </div>
-                        <Button onClick={openModalPayment} style={{ height: '8vh', width: '80%', backgroundColor: '#51bea5', color: 'white', fontWeight: 'bold', margin: '25px 0 0 27px' }}>Choose Payment Method</Button>
+                        <Button onClick={openModalPayment} id="button-checkout">Choose Payment Method</Button>
                     </Panel>
                 </div>
             </div>
@@ -334,9 +335,11 @@ const CheckoutScreen = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <Modal backdrop="static" show={modalPayments} onHide={() => setModalPayments(false)}>
+            <Modal className="modal-payments" backdrop="static" show={modalPayments} onHide={() => setModalPayments(false)}>
                 <Modal.Header>
-                    select payment
+                    <h4 className="sub-heading" id="header-payment">
+                        select payment
+                    </h4>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
@@ -345,42 +348,43 @@ const CheckoutScreen = () => {
                 </Modal.Body>
                 <Modal.Footer></Modal.Footer>
             </Modal>
-            <Modal backdrop="static" show={modalSelectedPay.show} onHide={closeModalFinal}>
+            <Modal className="modal-payments" backdrop="static" show={modalSelectedPay.show} onHide={closeModalFinal}>
                 <Modal.Header>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
-                        <h6 style={{ fontSize: '18px', textAlign: 'center', color: '#51bea5' }}>Upload Payment Proof</h6>
-                        <h6 style={{ fontSize: '14px' }}>{modalSelectedPay.jenis_pembayaran}</h6>
-                        <h6 style={{ fontSize: '14px' }}>Transfer to: {modalSelectedPay.nomor_rekening}</h6>
-
-                        <div style={{ display: 'flex', fontSize: '14px' }}>
-                            <p style={{ margin: '8px 5px' }}>bank account:  </p>
-                            <p style={{ color: '#51bea5' }}>  PaynKiller Indonesia</p>
+                        <h6 className="text" id="header-upload">Upload Payment Proof</h6>
+                        <h6 className="text">{modalSelectedPay.jenis_pembayaran}</h6>
+                        <h6 className="text">Transfer to: {modalSelectedPay.nomor_rekening}</h6>
+                        <div className="text" id="container-details">
+                            <p id="bank">bank account:  </p>
+                            <p id="account">  PaynKiller Indonesia</p>
                         </div>
-                        <h6 style={{ fontSize: '14px' }}>Rp {(grandTotal() + totalPriceIngredients()).toLocaleString('id-ID')}</h6>
-                        <h6 style={{ fontSize: '12px', marginTop: '20px' }}>please input jpg/png file</h6>
-                        {/* <img src={URL_IMG + modalSelectedPay.bukti_bayar} style={{ height: '60px', width: '60px' }} /> */}
+                        <h6 className="text">Rp {(grandTotal() + totalPriceIngredients()).toLocaleString('id-ID')}</h6>
+                        <h6 className="small-detail" >please input jpg/png file</h6>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-
-                    <div>
-                        <form encType="multipart/form-data">
-                            <input
-                                type="file"
-                                accept="image/*"
-                                name="IMG"
-                                onChange={(e) => handleChange(e)}
-                            />
-                        </form>
+                    <div className="container-upload">
+                        <div>
+                            <div className="input-proof">
+                                <form encType="multipart/form-data">
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        name="IMG"
+                                        onChange={(e) => handleChange(e)}
+                                    />
+                                </form>
+                            </div>
+                        </div>
+                        <Button id="button-submit" onClick={() => setCeckProofModal(true)}>submit</Button>
                     </div>
-                    <Button style={{ backgroundColor: '#51bea5', color: 'white', fontWeight: '600', marginLeft: 15 }} onClick={() => setCeckProofModal(true)}>submit</Button>
                 </Modal.Footer>
             </Modal>
-            <Modal backdrop="static" show={cekProofModal} onHide={() => setCeckProofModal(false)}>
+            <Modal className="modal-conf" backdrop="static" show={cekProofModal} onHide={() => setCeckProofModal(false)}>
                 <Modal.Header>Are your sure your payment proof is correct?</Modal.Header>
-                <Modal.Footer>
+                <Modal.Footer style={{marginTop:20}}>
                     <Button onClick={() => setCeckProofModal(false)}>No</Button>
                     <Button onClick={paid}>Yes</Button>
                 </Modal.Footer>

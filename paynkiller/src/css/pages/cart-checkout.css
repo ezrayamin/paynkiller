@@ -1,0 +1,329 @@
+/* PRODUCTS */
+.container-products {
+    background-color: white;
+    height: 160px;
+    width: 600px;
+    border: 1px solid gray;
+    margin: 10px 0 0 10px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+}
+
+.product-details {
+    font-size: 15px;
+    font-weight: 600px;
+    flex-grow: 3;
+    width: 40vw;
+    padding: 40px 0 0 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+#product-image {
+    height: 80px;
+    width: 100px;
+}
+#product-name {
+    margin: 0 0 0 20px;
+    line-height: 2;
+}
+
+#product-price {
+    margin: -10px 0 0 20px;
+}
+
+.edit-products {
+    flex-grow: 3;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-up {
+    flex-grow: 10;
+}
+
+.edit-down {
+    padding-top: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#container-delete {
+    display: flex;
+}
+
+#border-delete {
+    margin-top: 15px;
+    border-left: 1px solid gray;
+    height: 20px;
+    align-self: center;
+    margin: 0;
+}
+
+#button-delete {
+    background-color: white;
+    height: 30px;
+    margin: 5px;
+    position: initial;
+    color: #d3d3d3;
+}
+
+#input-group {
+    height: 30px;
+    width: 160px;
+    margin: 10px 0 0 20px;
+}
+
+.button-qty {
+    color: #51bea5;
+}
+
+#qty {
+    color: black;
+    text-align: center;
+    font-weight: 400;
+}
+
+/* ACTIVE INGREDIENTS */
+.container-code {
+    background-color: white;
+    height: 80px;
+    width: 200px;
+    border: 1px solid gray;
+    margin: -10px 10px 10px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 20px;
+}
+
+#text-code {
+    text-align: center;
+}
+
+#button-details {
+    background-color: white;
+    font-weight: bold;
+    color: #51bea5;
+    margin: 5px 0 0 20px;
+}
+
+.container-materials {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-material {
+    background-color: white;
+    height: 80px;
+    width: 220px;
+    border: 1px solid gray;
+    margin: 10px 10px 10px;
+    padding: 18px 20px 10px 20px; 
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#dose {
+    margin: 1px 0 0 10px;
+}
+
+/* BIODATA CHECKOUT */
+#margin-address {
+    margin-top: -10px;
+}
+
+#margin-phone {
+    margin-top: -10px;
+}
+
+.button-edit {
+    color: #51bea5;
+    border-color: #d3d3d3; 
+}
+/* REST CART*/
+#yours-heading {
+    margin: 17px 40px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.maincontainer-products {
+    border-top: 4px solid #51bea5;
+    flex-grow: 2;
+    padding: 30px 0 0 40px;
+    max-width: 65vw;
+}
+
+#subhead-products {
+    margin-top: 25px;
+}
+#subhead-ingredients {
+    margin-top: 25px;
+}
+
+#close-details {
+    background-color: white;
+    font-weight: bold;
+}
+
+/* GRANDTOTAL */
+.container-price {
+    flex-grow: 1;
+    position: relative;
+}
+
+.panel-price {
+    background-color: white;
+    height: 305px;
+    width: 280px;
+    position: fixed;
+    margin: 70px 0 0 40px;
+    border: 3px solid #d3d3d3;
+    border-radius: 20px;
+    padding: 20px 10px 20px 10px;
+}
+
+#subhead-panel {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.container-priceeach {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#prod {
+    margin-top: 10px;
+}
+
+#prodprice {
+    text-align: center;
+}
+
+#container-ingre {
+    margin-top: 10px;
+}
+
+#ingre {
+    margin-top: 10px;
+}
+
+#ingreprice {
+    text-align: center;
+}
+
+#shipping {
+    margin-top: 10px;
+}
+
+#free {
+    text-align: center;
+    color: #51bea5;
+    font-weight: bold;
+}
+
+#border-inprice {
+    border-bottom: 3px solid #d3d3d3;
+    margin-top: 30px;
+}
+
+#grand {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#grandnominal {
+    margin-top: 20px;
+    text-align: center;
+    color: #51bea5;
+    font-weight: bold;
+}
+
+#button-checkout {
+    margin-top: 60px;
+    width: 100%;
+    background-color: #51bea5;
+    color: white;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+/* MODAL DI CHECKOUT */
+.modal-payments {
+    width:200px;
+    height: 200px;
+    position: fixed;
+    top: 15%;
+    /* left: 20%; */
+}
+
+.button-selection {
+    margin-left: 80px;
+    width: 400px;
+    border: 1px solid gray;
+}
+#header-upload, #header-payment {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #51bea5;
+}
+
+.container-details {
+    display: flex;
+}
+
+#bank {
+    margin: 8px 5px;
+}
+
+#account {
+    color: #51bea5;
+}
+
+.container-upload {
+    display: flex;
+    justify-content: space-around;
+}
+
+.input-proof {
+    width: 230px;
+    margin-top: 8px;
+}
+#reminder {
+    margin: 5px;
+}
+
+#button-submit {
+    background-color: #51bea5;
+    width: 150px;
+    height: 40px;
+    color: white;
+    font-weight: 400;
+    font-size: 15px;
+    /* margin-left: 100px; */
+}
+
+.modal-conf {
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    top: 35%;
+    left: 0.7%;
+}
+/* REST CHECKOUT */
+#border-biodata {
+    /* style={{ marginTop: 15, borderTop: '4px solid #d3d3d3' }} */
+    margin-top: 25px;
+    border-top: 3px solid #d3d3d3;
+}

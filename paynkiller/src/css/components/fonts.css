@@ -1,0 +1,20 @@
+.heading {
+    font-size: 34px;
+}
+
+.sub-heading {
+    font-size: 24px;
+}
+
+.text {
+    font-size: 15px;
+}
+
+.alert {
+    font-size: 15px;
+    color: red;
+}
+
+.small-detail {
+    font-size: 12px;
+}
