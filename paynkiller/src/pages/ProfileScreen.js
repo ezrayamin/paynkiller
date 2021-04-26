@@ -9,6 +9,8 @@ import { logout, showProfile } from '../action'
 
 import { Link } from 'react-router-dom'
 
+import '../css/components/fonts.css'
+
 const ProfileScreen = (props) => {
     // const [verified, setVerified] = React.useState(false)
     const [editProfile, setEditProfile] = React.useState(false)
@@ -30,10 +32,9 @@ const ProfileScreen = (props) => {
 
     React.useEffect(async () => {
         try {
+            dispatch(showProfile())
             let token = props.location.search.substring(1)
             await Axios.post('http://localhost:2000/user/verify', { token })
-            dispatch(showProfile())
-            console.log(biodata)
         }
         catch (err) {
             console.log(err)
@@ -49,9 +50,9 @@ const ProfileScreen = (props) => {
     const handleSave = async () => {
         console.log(formValue)
         try {
+            // dispatch(showProfile())
             await Axios.patch(`http://localhost:2000/user/editProfile/${id_customer}`, formValue)
             setEditProfile(false)
-            dispatch(showProfile())
         }
         catch (err) {
             console.log(err)
@@ -84,75 +85,47 @@ const ProfileScreen = (props) => {
 
     const FormProfile = () => {
         return (
-            <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                <div style={{ flexGrow: 1 }}>
-                    {biodata.id_status == 1
-                        ?
-                        <div>
-                            <p style={{ fontSize: '14px' }}>username</p>
-                            <h5 style={{ fontSize: '16 px' }}>{biodata.username}</h5>
-                            <p style={{ fontSize: '14px', marginTop: 15 }}>email</p>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '20vw' }}>
-                                <h5 style={{ fontSize: '16px' }}>{biodata.email}</h5>
-                                <div>
-                                    <h5 style={{ fontSize: '12px', color: '#51bea5' }}>verified</h5>
-                                </div>
-                            </div>
-                        </div>
-                        :
-                        biodata.id_status === 0
-                            ?
-                            <div>
-                                <p style={{ fontSize: '14px' }}>username</p>
-                                <h5 style={{ fontSize: '16 px' }}>{biodata.username}</h5>
-                                <p style={{ fontSize: '14px', marginTop: 15 }}>email</p>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', width: '20vw' }}>
-                                    <h5 style={{ fontSize: '16px' }}>{biodata.email}</h5>
-                                    <Button style={{ fontSize: '12px', color: '#51bea5', backgroundColor: 'white', fontWeight: 'bold', marginTop: '-3px' }}
-                                        onClick={resend}>
-                                        resend verification
+            <div className="container-form">
+                <div className="username-email">
+                    <div>
+                        <p className="text">username</p>
+                        <h5 className="text">{biodata.username}</h5>
+                        <p className="email-text">email</p>
+                        <div className="container-email">
+                            <h5 className="text">{biodata.email}</h5>
+                            {biodata.id_status == 1
+                                ?
+                                <h5 className="verif-status">verified</h5>
+                                :
+                                biodata.id_status === 0
+                                ?
+                                <Button className="verif-status" id="button-resend" onClick={resend}>
+                                    resend email
                                 </Button>
-                                </div>
-                            </div>
-                            :
-                            <div>
-                                <p style={{ fontSize: '14px' }}>username</p>
-                                <h5 style={{ fontSize: '16 px' }}>{username}</h5>
-                            </div>
-                    }
+                                :
+                                <div></div>
+                            }                           
+                        </div>
+                    </div>
                 </div>
-                <div style={{
-                    border: '1px solid gray', padding: '20px 30px 20px 30px',
-                    borderRadius: '10px', flexGrow: 2, maxWidth: '30vw'
-                }}>
+                <div className="biodata">
                     {!biodata.firstname || !biodata.lastname || !biodata.alamat || !biodata.phone
                         ?
-                        <>
-                            <h5 style={{ fontSize: '14px', color: 'red', marginBottom:10 }}>add now to personalize your account</h5>
-                            <h5 style={{ fontSize: '14px' }}>first name:</h5>
-                            <h5 style={{ fontSize: '14px' }}> {biodata.firstname ? biodata.firstname : ''}</h5>
-                            <h5 style={{ fontSize: '14px', marginTop: 10 }}>last name:</h5>
-                            <h5 style={{ fontSize: '14px' }}> {biodata.lastname ? biodata.lastname : ''}</h5>
-                            <h5 style={{ fontSize: '14px', marginTop: 10 }}>adrress: </h5>
-                            <h5 style={{ fontSize: '14px' }}> {biodata.alamat ? biodata.alamat : ''}</h5>
-                            <h5 style={{ fontSize: '14px', marginTop: 10 }}>phone: </h5>
-                            <h5 style={{ fontSize: '14px', marginBottom:10 }}> {biodata.phone ? biodata.phone : ''}</h5>
-                            <Button style={{ backgroundColor: '#04BF8A', color: 'white', width: '100%' }} onClick={() => setEditProfile(true)}>Edit</Button>
-                        </>
+                        <h5 className="alert" id="reminder-add">add now to personalize your account</h5>
                         :
-                        <>
-                        <h5 style={{ fontSize: '14px' }}>first name:</h5>
-                        <h5 style={{ fontSize: '14px' }}> {biodata.firstname ? biodata.firstname : ''}</h5>
-                        <h5 style={{ fontSize: '14px', marginTop: 10 }}>last name:</h5>
-                        <h5 style={{ fontSize: '14px' }}> {biodata.lastname ? biodata.lastname : ''}</h5>
-                        <h5 style={{ fontSize: '14px', marginTop: 10 }}>adrress: </h5>
-                        <h5 style={{ fontSize: '14px' }}> {biodata.alamat ? biodata.alamat : ''}</h5>
-                        <h5 style={{ fontSize: '14px', marginTop: 10 }}>phone: </h5>
-                        <h5 style={{ fontSize: '14px' }}> {biodata.phone ? biodata.phone : ''}</h5>
-                        <Button style={{ backgroundColor: '#04BF8A', color: 'white', width: '100%' }} onClick={() => setEditProfile(true)}>Edit</Button>
-                        </>
-
+                        <></>
                     }
+                    <div>
+                        <h5 className="text">first name:</h5>
+                        <h5 className="text"> {biodata.firstname ? biodata.firstname : ''}</h5>
+                        <h5 className="biodata-text">last name:</h5>
+                        <h5 className="text"> {biodata.lastname ? biodata.lastname : ''}</h5>
+                        <h5 className="biodata-text">adrress: </h5>
+                        <h5 className="text"> {biodata.alamat ? biodata.alamat : ''}</h5>
+                        <h5 className="biodata-text">phone: </h5>
+                        <h5 className="text" id="phone"> {biodata.phone ? biodata.phone : ''}</h5>
+                        <Button className="buttons" id="button-edit" onClick={() => setEditProfile(true)}>Edit</Button>
+                    </div>
                 </div>
             </div>
         )
@@ -162,47 +135,43 @@ const ProfileScreen = (props) => {
     return (
         <div>
             <Navbar />
-            <div style={{ display: 'flex', marginTop: 20, flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                {/* backgroundColor: 'white', height: '70vh', width: '56vw', border: '2px solid gray', padding: '20px 30px 20px 30px', borderRadius: '20px', marginTop:40  */}
-                <div style={{ backgroundColor: 'white', height: '75vh', width: '56vw', border: '2px solid gray', padding: '20px 30px 20px 30px', borderRadius: '20px', marginTop: 40 }}>
-                    <h1 style={{ color: '#51bea5' }}>Account Details</h1>
-                    <p style={{ fontSize: '12px', marginBottom: 20 }}>You can update your account anytime you like</p>
+            <div className="main-container">
+                <div className="containers" id="account-container">
+                    <h1 className="heading" id="account-header">Account Details</h1>
+                    <p className="small-detail" id="update-reminder">You can update your account anytime you like</p>
                     <FormProfile />
                 </div>
-                <div style={{
-                    width: '20vw', height: '30vh', display: 'flex', flexDirection: 'column', border: '2px solid gray',
-                    padding: '20px 30px 20px 30px', borderRadius: '20px', marginTop: 40
-                }}>
+                <div className="containers" id="buttons-container">
                     <Link to='/ShowCustomOrder'>
-                        <Button style={{ backgroundColor: '#04BF8A', color: 'white', width: '100%' }} id="Button">My Custom Order</Button>
+                        <Button className="buttons" id="button-co">My Custom Order</Button>
                     </Link>
                     <Link to='/historyUser'>
-                        <Button style={{ backgroundColor: '#04BF8A', color: 'white', width: '100%' }} id="Button">My Orders</Button>
+                        <Button className="buttons" id="button-order">My Orders</Button>
                     </Link>
                     <Link to='/'>
-                        <Button style={{ width: '100%' }} onClick={btnlogout} color='red' id="Button">LOGOUT</Button>
+                        <Button onClick={btnlogout} id="logout-button">LOGOUT</Button>
                     </Link>
                 </div>
             </div>
-            <Modal show={editProfile} onHide={() => setEditProfile(false)}>
-                <Modal.Body style={{ marginTop: '0px' }}>
+            <Modal id="modal-form" show={editProfile} onHide={() => setEditProfile(false)}>
+                <Modal.Body id="modal-body">
                     <div>
-                        <p>first name</p>
+                        <p className="text">first name</p>
                         <Input
                             value={formValue.firstname}
                             onChange={value => setFormValue({ ...formValue, firstname: value })}
                         />
-                        <p>last name</p>
+                        <p className="biodata-text">last name</p>
                         <Input
                             value={formValue.lastname}
                             onChange={value => setFormValue({ ...formValue, lastname: value })}
                         />
-                        <p>address</p>
+                        <p className="biodata-text">address</p>
                         <Input
                             value={formValue.alamat}
                             onChange={value => setFormValue({ ...formValue, alamat: value })}
                         />
-                        <p>phone number</p>
+                        <p className="biodata-text">phone number</p>
                         <Input
                             value={formValue.phone}
                             onChange={value => setFormValue({ ...formValue, phone: value })}
@@ -210,8 +179,8 @@ const ProfileScreen = (props) => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button style={{ width: '30%' }} onClick={() => setEditProfile(false)}>Cancel</Button>
-                    <Button style={{ backgroundColor: '#04BF8A', color: 'white', width: '30%' }} onClick={handleSave}>Save</Button>
+                    <Button id="button-cancel" onClick={() => setEditProfile(false)}>Cancel</Button>
+                    <Button id="button-save" onClick={handleSave}>Save</Button>
                 </Modal.Footer>
             </Modal>
         </div>

@@ -114,7 +114,7 @@ export const showProfile = () => {
     return async(dispatch) => {
         try {
             const token = localStorage.getItem('token')
-            console.log('token di profile action', {token})
+            // console.log('token di profile action', {token})
             const res = await Axios.post('http://localhost:2000/user/showProfile', {token})
             // console.log('profile di action', res.data)
             dispatch({

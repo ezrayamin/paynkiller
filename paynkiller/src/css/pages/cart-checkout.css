@@ -3,7 +3,7 @@
     background-color: white;
     height: 160px;
     width: 600px;
-    border: 1px solid gray;
+    border: 1px solid #d3d3d3;
     margin: 10px 0 0 10px;
     display: flex;
     flex-direction: row;
@@ -58,7 +58,7 @@
 
 #border-delete {
     margin-top: 15px;
-    border-left: 1px solid gray;
+    border-left: 1px solid #d3d3d3;
     height: 20px;
     align-self: center;
     margin: 0;
@@ -79,7 +79,7 @@
 }
 
 .button-qty {
-    color: #51bea5;
+    color: #04BF8A;
 }
 
 #qty {
@@ -93,8 +93,8 @@
     background-color: white;
     height: 80px;
     width: 200px;
-    border: 1px solid gray;
-    margin: -10px 10px 10px;
+    border: 1px solid #d3d3d3;
+    margin: 10px 10px 10px;
     padding: 10px 20px 10px 20px;
     border-radius: 20px;
 }
@@ -106,7 +106,7 @@
 #button-details {
     background-color: white;
     font-weight: bold;
-    color: #51bea5;
+    color: #04BF8A;
     margin: 5px 0 0 20px;
 }
 
@@ -119,7 +119,7 @@
     background-color: white;
     height: 80px;
     width: 220px;
-    border: 1px solid gray;
+    border: 1px solid #d3d3d3;
     margin: 10px 10px 10px;
     padding: 18px 20px 10px 20px; 
     border-radius: 20px;
@@ -142,7 +142,7 @@
 }
 
 .button-edit {
-    color: #51bea5;
+    color: #04BF8A;
     border-color: #d3d3d3; 
 }
 /* REST CART*/
@@ -157,7 +157,7 @@
 }
 
 .maincontainer-products {
-    border-top: 4px solid #51bea5;
+    border-top: 4px solid #04BF8A;
     flex-grow: 2;
     padding: 30px 0 0 40px;
     max-width: 65vw;
@@ -229,7 +229,7 @@
 
 #free {
     text-align: center;
-    color: #51bea5;
+    color: #04BF8A;
     font-weight: bold;
 }
 
@@ -246,14 +246,14 @@
 #grandnominal {
     margin-top: 20px;
     text-align: center;
-    color: #51bea5;
+    color: #04BF8A;
     font-weight: bold;
 }
 
 #button-checkout {
     margin-top: 60px;
     width: 100%;
-    background-color: #51bea5;
+    background-color: #04BF8A;
     color: white;
     font-weight: bold;
     margin-top: 25px;
@@ -271,12 +271,12 @@
 .button-selection {
     margin-left: 80px;
     width: 400px;
-    border: 1px solid gray;
+    border: 1px solid #d3d3d3;
 }
 #header-upload, #header-payment {
     text-align: center;
     margin-bottom: 20px;
-    color: #51bea5;
+    color: #04BF8A;
 }
 
 .container-details {
@@ -288,7 +288,7 @@
 }
 
 #account {
-    color: #51bea5;
+    color: #04BF8A;
 }
 
 .container-upload {
@@ -305,7 +305,7 @@
 }
 
 #button-submit {
-    background-color: #51bea5;
+    background-color: #04BF8A;
     width: 150px;
     height: 40px;
     color: white;
