@@ -3,7 +3,7 @@ const {asyncQuery, generateQueryBody} = require('../helpers/queryHelp')
 module.exports = {
     getAllCate: async (req, res) => {
         try {
-            const queryCate = 'SELECT * FROM category'
+            const queryCate = 'SELECT * FROM category where id_status = 1'
             const result = await asyncQuery(queryCate)
             res.status(200).send(result)
         }
@@ -18,7 +18,7 @@ module.exports = {
             const addQuery = `INSERT INTO category (nama_category) VALUES ('${isi}')`
             await asyncQuery(addQuery)
 
-            const queryCate = 'SELECT * FROM category'
+            const queryCate = 'SELECT * FROM category where id_status = 1'
             const result = await asyncQuery(queryCate)
             res.status(200).send(result)
         }
@@ -29,10 +29,11 @@ module.exports = {
     },
     delete: async (req, res) => {
         try {
-            const deleteQuery = `DELETE FROM category WHERE id_category = ${parseInt(req.params.id)}`
+            // const deleteQuery = `DELETE FROM category WHERE id_category = ${parseInt(req.params.id)}`
+            const deleteQuery = `UPDATE category SET id_status = 3 where id_category = ${parseInt(req.params.id)}`
             await asyncQuery(deleteQuery)
 
-            const queryCate = 'SELECT * FROM category'
+            const queryCate = 'SELECT * FROM category where id_status = 1'
             const result = await asyncQuery(queryCate)
             res.status(200).send(result)
         }
@@ -46,7 +47,7 @@ module.exports = {
             const editQuery = `UPDATE category SET${generateQueryBody(req.body)} where id_category = ${parseInt(req.params.id)}`
             await asyncQuery(editQuery)
 
-            const queryCate = 'SELECT * FROM category'
+            const queryCate = 'SELECT * FROM category where id_status = 1'
             const result = await asyncQuery(queryCate)
             res.status(200).send(result)
         }

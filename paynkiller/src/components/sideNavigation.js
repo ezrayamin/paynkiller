@@ -71,7 +71,7 @@ export default function SideNavigation() {
                     <Dropdown.Item eventKey="2-4">Products</Dropdown.Item>
                   </Link>
                 </Dropdown>
-                <Dropdown eventKey="3" title="Management Stock" icon={<Icon icon="archive" />}>
+                <Dropdown eventKey="3" title="Stock Management" icon={<Icon icon="archive" />}>
                   <Link to="/admin/stock/product">
                     <Dropdown.Item eventKey="3-1">Stock Product</Dropdown.Item>
                   </Link>
